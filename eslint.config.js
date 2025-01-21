@@ -10,6 +10,7 @@ export default [
       globals: {
         ...globals.browser, // Enables browser globals (window, document, etc.)
         ...globals.node, // Enables Node.js globals (process, __dirname, etc.)
+        chrome: "readonly",
       },
     },
     settings: {
