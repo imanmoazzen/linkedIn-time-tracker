@@ -5,6 +5,7 @@ import styles from "./Panel.module.css";
 
 export const Panel = () => {
   const [stats, setStats] = useState({});
+  console.log("salam");
 
   useEffect(() => {
     chrome.storage.local.get(["linkedinSessions"], (result) => {
