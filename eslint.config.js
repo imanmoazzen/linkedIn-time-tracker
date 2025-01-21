@@ -2,7 +2,6 @@ import globals from "globals";
 import pluginJs from "@eslint/js";
 import pluginReact from "eslint-plugin-react";
 
-/** @type {import('eslint').Linter.Config[]} */
 export default [
   {
     files: ["**/*.{js,mjs,cjs,jsx}"],
@@ -17,6 +16,9 @@ export default [
       react: {
         version: "detect", // Automatically detects React version
       },
+    },
+    rules: {
+      "react/react-in-jsx-scope": "off", // ✅ No need to import React in React 17+
     },
   },
   pluginJs.configs.recommended,

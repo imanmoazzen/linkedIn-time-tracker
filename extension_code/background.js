@@ -73,7 +73,3 @@ chrome.runtime.onMessage.addListener((message, sender) => {
     stopTracking();
   }
 });
-
-chrome.action.onClicked.addListener((tab) => {
-  console.log("Extension clicked!");
-});
