@@ -14,7 +14,8 @@
   },
   "scripts": {
     "dev": "node ./devWatch.js",
-    "build": "node prepareRelease.js"
+    "build": "node prepareRelease.js",
+    "lint": "eslint ."
   },
   "eslintConfig": {
     "extends": [
@@ -35,6 +36,10 @@
     ]
   },
   "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "eslint": "^9.18.0",
+    "eslint-plugin-react": "^7.37.4",
+    "globals": "^15.14.0",
     "sass": "^1.83.4",
     "sass-loader": "^16.0.4"
   }
