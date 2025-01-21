@@ -1,3 +1,4 @@
+import babelParser from "@babel/eslint-parser";
 import globals from "globals";
 import js from "@eslint/js";
 import prettier from "eslint-plugin-prettier";
@@ -18,6 +19,13 @@ export default [
         ...globals.browser,
         ...globals.node,
         chrome: "readonly",
+      },
+      parser: babelParser,
+      parserOptions: {
+        requireConfigFile: false,
+        babelOptions: {
+          presets: ["@babel/preset-react"],
+        },
       },
     },
     settings: {
