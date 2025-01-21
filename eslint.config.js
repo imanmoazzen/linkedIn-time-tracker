@@ -19,6 +19,7 @@ export default [
     },
     rules: {
       "react/react-in-jsx-scope": "off", // ✅ No need to import React in React 17+
+      "react/prop-types": "off",
     },
   },
   pluginJs.configs.recommended,
