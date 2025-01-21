@@ -1,0 +1,39 @@
+.mainContainer {
+  position: fixed;
+  bottom: 1em;
+  left: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: 1px solid #0077b5;
+  border-radius: 8px;
+  padding: 2rem;
+  font-size: 1rem;
+}
+
+.title {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  color: #0077b5;
+}
+
+.durations {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.durations strong {
+  color: gray;
+}
+
+.durations section {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}

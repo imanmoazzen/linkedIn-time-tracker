@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  --toggle-height: 1.5em;
+}
+
+.toggle {
+  position: relative;
+  font-size: inherit;
+  width: calc(2 * var(--toggle-height));
+  height: var(--toggle-height);
+  border: none;
+  border-radius: calc(var(--toggle-height) / 2);
+  line-height: 0;
+  transition: background-color 0.2s;
+  border: 1px solid gray;
+  background: #f0f0f0;
+  cursor: pointer;
+}
+
+.toggle[data-is-toggled="true"] {
+  background: var(--accent-color);
+}
+
+.knob {
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  top: 0;
+  left: 0px;
+  background: #454344;
+  border-radius: calc(var(--toggle-height) / 2);
+  transition: left 0.2s;
+}
+
+.toggle[data-is-toggled="true"] .knob {
+  left: 50%;
+}
