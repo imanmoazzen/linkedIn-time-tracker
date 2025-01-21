@@ -16,7 +16,7 @@
     "prettier": "npx prettier --write .",
     "dev": "node ./devWatch.js",
     "build": "node prepareRelease.js",
-    "lint": "eslint ."
+    "lint": "npx eslint ."
   },
   "eslintConfig": {
     "extends": [

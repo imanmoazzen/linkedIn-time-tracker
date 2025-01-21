@@ -5,9 +5,12 @@ import prettier from "eslint-plugin-prettier";
 import react from "eslint-plugin-react";
 
 export default [
-  js.configs.recommended,
+  js.configs.recommended, // ESLint recommended JavaScript rules
   {
-    files: ["**/*.{js,mjs,cjs,jsx}"],
+    ignores: ["node_modules/", "build/", "dev-build/"],
+  },
+  {
+    files: ["**/*.{js,mjs,cjs,jsx}"], // Define files directly, no "overrides" key
     plugins: {
       react: react,
       prettier: prettier,
@@ -20,7 +23,7 @@ export default [
         ...globals.node,
         chrome: "readonly",
       },
-      parser: babelParser,
+      parser: babelParser, // Use Babel parser for JSX and modern JS
       parserOptions: {
         requireConfigFile: false,
         babelOptions: {
@@ -35,6 +38,7 @@ export default [
     },
     rules: {
       "react/react-in-jsx-scope": "off",
+      "react/jsx-uses-vars": "error",
       "react/prop-types": "off",
       "prettier/prettier": ["error", { endOfLine: "auto" }],
     },
