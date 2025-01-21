@@ -13,9 +13,10 @@
     "web-vitals": "^4.2.4"
   },
   "scripts": {
+    "prettier": "npx prettier --write .",
     "dev": "node ./devWatch.js",
     "build": "node prepareRelease.js",
-    "lint": "eslint ."
+    "lint": "npx eslint ."
   },
   "eslintConfig": {
     "extends": [
@@ -36,10 +37,14 @@
     ]
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.26.5",
+    "@babel/preset-react": "^7.26.3",
     "@eslint/js": "^9.18.0",
     "eslint": "^9.18.0",
+    "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-react": "^7.37.4",
     "globals": "^15.14.0",
+    "prettier": "^3.4.2",
     "sass": "^1.83.4",
     "sass-loader": "^16.0.4"
   }

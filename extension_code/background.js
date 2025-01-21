@@ -12,6 +12,7 @@ function startTracking(tabId) {
 // Function to stop tracking when the user leaves LinkedIn
 function stopTracking() {
   if (startTime) {
+    console.log("start time");
     const duration = (Date.now() - startTime) / 1000;
     saveSession(duration);
     startTime = null;
@@ -71,8 +72,4 @@ chrome.runtime.onMessage.addListener((message, sender) => {
   } else if (message.action === "stopTracking") {
     stopTracking();
   }
-});
-
-chrome.action.onClicked.addListener((tab) => {
-  console.log("Extension clicked!");
 });

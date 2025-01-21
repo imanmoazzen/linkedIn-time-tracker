@@ -41,11 +41,7 @@ export default async function injectContent() {
   //   - all of the stylesheets have either loaded or failed to load
   await Promise.any([
     timeoutPromise(500),
-    Promise.allSettled([
-      styleSheetPromise,
-      globalStyleSheetPromise,
-      fontStylesheetPromise,
-    ]),
+    Promise.allSettled([styleSheetPromise, globalStyleSheetPromise, fontStylesheetPromise]),
   ]);
 
   container.style.opacity = 1;

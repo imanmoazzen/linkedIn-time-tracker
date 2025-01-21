@@ -15,11 +15,7 @@ const DecoratedButton = ({
       className={`${styles["button"]} ${extraClasses}`}
       onClick={isDisabled ? () => {} : () => onClick?.()}
     >
-      <span
-        className={`${googleClassName} ${styles["icon"]} ${extraIconClasses}`}
-      >
-        {icon}
-      </span>
+      <span className={`${googleClassName} ${styles["icon"]} ${extraIconClasses}`}>{icon}</span>
       <span>{buttonText}</span>
     </button>
   );

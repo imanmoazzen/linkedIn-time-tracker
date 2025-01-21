@@ -44,13 +44,9 @@ async function incrementManifestVersions(versionBumpChoice) {
 // ADDITIONALLY: If bumping the patch number would result in a number greater than 10,
 // bump the minor number instead.
 function incrementVersion(semverString, versionBumpChoice) {
-  const [major, minor, patch] = semverString
-    .split(".")
-    .map((part) => Number(part));
+  const [major, minor, patch] = semverString.split(".").map((part) => Number(part));
   if (versionBumpChoice === "p" && patch + 1 >= 10) {
-    console.log(
-      "Patch number would be greater than or equal to 10, bumping minor number instead."
-    );
+    console.log("Patch number would be greater than or equal to 10, bumping minor number instead.");
     versionBumpChoice = "n";
   }
   if (versionBumpChoice === "m") {
@@ -64,10 +60,7 @@ function incrementVersion(semverString, versionBumpChoice) {
 
 function build() {
   return esbuild.build({
-    entryPoints: [
-      path.join(SOURCE_DIRECTORY, "background.js"),
-      path.join(SOURCE_DIRECTORY, "content.js"),
-    ],
+    entryPoints: [path.join(SOURCE_DIRECTORY, "background.js"), path.join(SOURCE_DIRECTORY, "content.js")],
     bundle: true,
     minify: false,
     loader: { ".js": "jsx", ".png": "dataurl", ".webp": "dataurl" },
@@ -78,10 +71,7 @@ function build() {
 }
 
 async function copyManifest() {
-  return await fs.copyFile(
-    MANIFEST_PATH,
-    path.join(BUILD_DIRECTORY, "manifest.json")
-  );
+  return await fs.copyFile(MANIFEST_PATH, path.join(BUILD_DIRECTORY, "manifest.json"));
 }
 
 function handleError(err) {
@@ -93,28 +83,19 @@ async function copyAssets() {
   const copyCssPromise = fs.readdir(SOURCE_DIRECTORY).then((filePaths) => {
     const cssPaths = filePaths.filter((filePath) => filePath.endsWith(".css"));
     const copyPromises = cssPaths.map((filePath) =>
-      fs.copyFile(
-        path.join(SOURCE_DIRECTORY, filePath),
-        path.join(BUILD_DIRECTORY, path.basename(filePath))
-      )
+      fs.copyFile(path.join(SOURCE_DIRECTORY, filePath), path.join(BUILD_DIRECTORY, path.basename(filePath)))
     );
     return Promise.all(copyPromises);
   });
 
   await Promise.all([
     copyCssPromise,
-    fs.cp(
-      path.join(SOURCE_DIRECTORY, "assets"),
-      path.join(BUILD_DIRECTORY, "assets"),
-      { recursive: true }
-    ),
+    fs.cp(path.join(SOURCE_DIRECTORY, "assets"), path.join(BUILD_DIRECTORY, "assets"), { recursive: true }),
   ]);
 }
 
 async function createZip() {
-  await execPromise(
-    `cd ${BUILD_DIRECTORY} && npx bestzip .${OUTPUT_DIRECTORY}/prod-chrome-ext.zip * && cd ..`
-  );
+  await execPromise(`cd ${BUILD_DIRECTORY} && npx bestzip .${OUTPUT_DIRECTORY}/prod-chrome-ext.zip * && cd ..`);
 }
 
 // helper function to prompt the command line user for input
@@ -125,11 +106,7 @@ async function prompt(message, options = null) {
     const response = await rl.question(message);
     if (options && options.includes(response)) return response;
     if (!options) return response;
-    console.log(
-      `"${response}" is not a valid option. The valid options are: ${options.join(
-        ", "
-      )}`
-    );
+    console.log(`"${response}" is not a valid option. The valid options are: ${options.join(", ")}`);
   }
 }
 
@@ -146,10 +123,7 @@ async function run() {
 
 console.time("Execution time");
 try {
-  const versionBumpChoice = await prompt(
-    "Is this a (m)ajor, mi(n)or, or (p)atch release?\n",
-    ["m", "n", "p"]
-  );
+  const versionBumpChoice = await prompt("Is this a (m)ajor, mi(n)or, or (p)atch release?\n", ["m", "n", "p"]);
   await fs.rm(OUTPUT_DIRECTORY, { force: true, recursive: true });
   await fs.mkdir(OUTPUT_DIRECTORY);
   const version = await incrementManifestVersions(versionBumpChoice);

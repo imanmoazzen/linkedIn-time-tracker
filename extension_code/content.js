@@ -1,4 +1,3 @@
-import { getUserActivityStats } from "./content_scripts/getUserActivityStats.js";
 import injectContent from "./content_scripts/injectContent.js";
 
 if (window.location.href.includes("linkedin.com")) {
