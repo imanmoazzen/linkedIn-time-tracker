@@ -3,6 +3,5 @@
   font-family: "Castofly_extension_Material Symbols Outlined";
   font-style: normal;
   font-weight: 400;
-  src: url("chrome-extension://__MSG_@@extension_id__/assets/material_symbols_outlined.woff2")
-    format("woff2");
+  src: url("chrome-extension://__MSG_@@extension_id__/assets/material_symbols_outlined.woff2") format("woff2");
 }

@@ -6,12 +6,11 @@ import styles from "./Panel.module.css";
 export const Panel = () => {
   const [stats, setStats] = useState({});
 
-  console.log(name);
-
   useEffect(() => {
     chrome.storage.local.get(["linkedinSessions"], (result) => {
       setStats(getUserActivityStats(result.linkedinSessions));
     });
+  }, []);
 
   return (
     <div className={styles.mainContainer}>
@@ -27,9 +26,7 @@ export const Panel = () => {
         </section>
         <section>
           <strong>Yesterday</strong>
-          <span>
-            {`${stats.counterYesterday} Visits, ${stats.yesterdayTotal}`}
-          </span>
+          <span>{`${stats.counterYesterday} Visits, ${stats.yesterdayTotal}`}</span>
         </section>
         <section>
           <strong>Weekly Average</strong> <span> {stats.weeklyAvg}</span>

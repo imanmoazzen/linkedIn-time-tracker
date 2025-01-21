@@ -35,10 +35,7 @@ export function getUserActivityStats(sessions) {
     .slice(0, 7) // Keep last 7 days
     .map((date) => dailyTotals[date]); // Extract durations
 
-  const weeklyAvg =
-    last7Days.length > 0
-      ? last7Days.reduce((sum, d) => sum + d, 0) / last7Days.length
-      : 0;
+  const weeklyAvg = last7Days.length > 0 ? last7Days.reduce((sum, d) => sum + d, 0) / last7Days.length : 0;
 
   // Function to convert seconds to "HH hours, MM minutes, SS seconds"
   function formatTime(seconds) {

@@ -1,27 +1,34 @@
 import globals from "globals";
-import pluginJs from "@eslint/js";
-import pluginReact from "eslint-plugin-react";
+import js from "@eslint/js";
+import prettier from "eslint-plugin-prettier";
+import react from "eslint-plugin-react";
 
 export default [
+  js.configs.recommended,
   {
     files: ["**/*.{js,mjs,cjs,jsx}"],
+    plugins: {
+      react: react,
+      prettier: prettier,
+    },
     languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
       globals: {
-        ...globals.browser, // Enables browser globals (window, document, etc.)
-        ...globals.node, // Enables Node.js globals (process, __dirname, etc.)
+        ...globals.browser,
+        ...globals.node,
         chrome: "readonly",
       },
     },
     settings: {
       react: {
-        version: "detect", // Automatically detects React version
+        version: "detect",
       },
     },
     rules: {
-      "react/react-in-jsx-scope": "off", // ✅ No need to import React in React 17+
+      "react/react-in-jsx-scope": "off",
       "react/prop-types": "off",
+      "prettier/prettier": ["error", { endOfLine: "auto" }],
     },
   },
-  pluginJs.configs.recommended,
-  pluginReact.configs.flat.recommended,
 ];
